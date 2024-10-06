@@ -1,0 +1,34 @@
+name: Deploy Service 1 to ECS
+
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow on push to main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Log in to Amazon ECR
+      run: |
+        aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | \
+        docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+    
+    - name: Build Docker image for Service 1
+      run: |
+        docker build -t service1 ./service1
+        docker tag service1:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/service1:latest
+
+    - name: Push Service 1 image to ECR
+      run: |
+        docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/service1:latest
+
+    - name: Update ECS Service for Service 1
+      run: |
+        aws ecs update-service --cluster your-cluster-name \
+          --service service1 \
+          --force-new-deployment
