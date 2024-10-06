@@ -27,7 +27,7 @@ jobs:
 
     - name: Build Docker image for Service 1
       run: |
-        docker build -t service1 ./service1
+        docker build -t microService1 .
         docker tag service1:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/service1:latest
 
     - name: Push Service 1 image to ECR
