@@ -20,17 +20,19 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
 
-    - name: Log in to Amazon ECR
+    - name: Log in to Amazon ECR Public
       run: |
-        aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | \
-        docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+        aws ecr-public get-login-password --region ${{ secrets.AWS_REGION }} | \
+        docker login --username AWS --password-stdin public.ecr.aws
 
     - name: Build Docker image for Service 1
       run: |
         docker build -t ms-public .
-        docker tag ms-public:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/ms-public:latest
 
-    - name: Push Service 1 image to ECR
+    - name: Tag Docker image for Public ECR
+      run: |
+        docker tag ms-public:latest public.ecr.aws/ms-public/ms-public:latest
+
+    - name: Push Service 1 image to Public ECR
       run: |
          docker push public.ecr.aws/ms-public/ms-public:latest
-
