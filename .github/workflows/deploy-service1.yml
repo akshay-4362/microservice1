@@ -29,8 +29,8 @@ jobs:
     - name: Build Docker image for Service 1
       run: |
         docker build -t ms-public .
-        docker tag ms-public:latest public.ecr.aws/ms-public/ms-public:latest
+        docker tag ms-public:latest public.ecr.aws/ms-public:latest
 
     - name: Push Service 1 image to ECR
       run: |
-         docker push public.ecr.aws/ms-public/ms-public:latest
+         docker push public.ecr.aws/ms-public:latest
