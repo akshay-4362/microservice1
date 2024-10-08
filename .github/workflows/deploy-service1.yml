@@ -27,8 +27,8 @@ jobs:
 
     - name: Build Docker image for Service 1
       run: |
-        docker build -t microservice1 .
-        docker tag ms-public:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/microservice1:latest
+        docker build -t ms-public .
+        docker tag ms-public:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/ms-public::latest
 
     - name: Push Service 1 image to ECR
       run: |
