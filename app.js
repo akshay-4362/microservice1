@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 
 // Define a simple GET route
-app.get('/stage/ms1', (req, res) => {
+app.get('/ms1', (req, res) => {
   res.json('Hello, World from server 1');
 });
 
