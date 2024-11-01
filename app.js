@@ -13,6 +13,10 @@ app.get('/ms1', (req, res) => {
   res.json('Hello, World from server 1');
 });
 
+app.get('/test', (req, res) => {
+  res.json('TESTING THE DEPLOYMENT);
+});
+
 app.get('/data-from-ms2', async (req, res) => {
   try {
     // Make a GET request to Microservice 2 running on port 3001
