@@ -14,7 +14,7 @@ app.get('/ms1', (req, res) => {
 });
 
 app.get('/test', (req, res) => {
-  res.json('TESTING THE DEPLOYMENT);
+  res.json('TESTING THE DEPLOYMENT');
 });
 
 app.get('/data-from-ms2', async (req, res) => {
