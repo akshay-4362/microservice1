@@ -7,7 +7,7 @@ const app = express();
 
 app.get('/data-from-ms2', async (req, res) => {
   try {
-    const response = await axios.get('http://name-space-ms2.service-discovery-ms2/ms2');
+    const response = await axios.get('http://name-space-ms2.service-discovery-ms2:3001/ms2');
     res.json({
       message: 'Data from Microservice 2',
       data: response.data,
