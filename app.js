@@ -32,7 +32,7 @@ app.get('/ms1', (req, res) => {
 // Set up the server to listen on port 3000
 const PORT = 3000;
 const server =  app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server magic is running on http://localhost:${PORT}`);
 });
 
 // server.keepAliveTimeout = 30 * 1000; // <- important lines
