@@ -14,7 +14,7 @@ app.get('/data-from-ms2', async (req, res) => {
       data: response.data,
     });
   } catch (error) {
-    res.status(500).json({ error: 'Error accessing Microservice 2' });
+    res.status(500).json({ error, 'msg':'Error accessing Microservice 2 });
   }
 });
 
