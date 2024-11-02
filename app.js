@@ -8,7 +8,7 @@ const app = express();
 app.get('/data-from-ms2', async (req, res) => {
   try {
     // Make a GET request to Microservice 2 running on port 3001
-    const response = await axios.get('http://two-serive-cloud-map:3001/ms2');
+    const response = await axios.get('http://ecs-discovery-two.two-serive-cloud-map/ms2');
     res.json({
       message: 'Data from Microservice 2',
       data: response.data,
